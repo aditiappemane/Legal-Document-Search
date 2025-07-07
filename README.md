@@ -29,9 +29,73 @@ README.md
 ```
 
 ## Getting Started
-Instructions for setup and running will be added as the codebase is built.
+
+Follow these steps to set up and run the Indian Legal Document Search System on your machine.
+
+### 1. Prerequisites
+- **Python 3.8+**
+- **Node.js 16+ and npm**
+- **Git**
+
+### 2. Clone the Repository
+```
+git clone https://github.com/aditiappemane/Legal-Document-Search.git
+cd Legal-Document-Search
+```
+
+### 3. Backend Setup
+```
+cd backend
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+- Create a `.env` file in the `backend/` directory with your Gemini API key:
+  ```
+  GEMINI_API_KEY=your_actual_gemini_api_key
+  ```
+
+- Start the backend server:
+  ```
+  uvicorn app:app --reload
+  ```
+  The backend will run at `http://localhost:8000`
+
+### 4. Frontend Setup
+```
+cd ../frontend
+npm install
+```
+- Ensure your `frontend/package.json` contains:
+  ```json
+  "proxy": "http://localhost:8000"
+  ```
+- Start the React app:
+  ```
+  npm start
+  ```
+  The frontend will run at `http://localhost:3000`
+
+### 5. Usage
+- Open [http://localhost:3000](http://localhost:3000) in your browser.
+- **Upload** your legal documents (PDF/DOCX) using the upload form.
+- **Enter queries** and view side-by-side results for all four similarity methods.
+- **Evaluate metrics** by selecting relevant files and clicking "Evaluate" to see precision, recall, and diversity.
+
+### 6. Troubleshooting
+- **No embeddings created?**
+  - Check your `.env` file and Gemini API key.
+  - Ensure the backend terminal prints your API key (not `None`).
+- **CORS or 404 errors in frontend?**
+  - Make sure the backend is running and the proxy is set in `package.json`.
+- **Text extraction issues?**
+  - Ensure your PDFs are not scanned images (use text-based PDFs or DOCX).
+- **Other issues?**
+  - Check the backend and frontend terminal output for error messages.
 
 ---
+
+For more details, see the Analysis and Report sections below or contact the project maintainer.
 
 ## Analysis: Performance Report & Recommendations
 
